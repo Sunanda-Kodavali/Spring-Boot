@@ -30,4 +30,14 @@ public class AppController {
         model.addAttribute("name",name);
         return "greeting";
     }
+
+    @GetMapping("/pickColour")
+    public String pickColour() {
+        return "pickColour";
+    }
+    @GetMapping("/chosenColour")
+    public String chosenColour(@RequestParam String color, Model model) {
+        model.addAttribute("color",color);
+        return "chosenColour";
+    }
 }
