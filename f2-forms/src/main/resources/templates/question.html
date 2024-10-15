@@ -6,6 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 th:text = "${welcomeMessage}"></h1>
+<form action="/greeting" method="get">
+    <input type="text" name ="name" placeholder="enter your name" />
+    <button>Submit</button>
+
+</form>
 </body>
 </html>
