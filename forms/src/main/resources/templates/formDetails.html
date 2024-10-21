@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+<h2 th:text="${userName}">Welcome!</h2>
+<h2 th:text="${placeOfBirth}">Welcome!</h2>
+<h2 th:text="${yearOfBirth}">Welcome!</h2>
+<ul>
+    <li th:each="language : ${programmingLanguages}" th:text="${language}"></li>
+</ul>
+<h2 th:text="${programmingLanguages}">Welcome!</h2>
+<h2 th:utext="${description}">Welcome!</h2>
+
+
+</body>
+</html>
