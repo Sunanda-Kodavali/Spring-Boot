@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Form</title>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    >
+</head>
+<body>
+<h1 class="title" style="text-align: center;padding: 20px 10px;">Registration</h1>
+<div class="container">
+    <div class="notification is-primary">
+        <form action="/formDetails" method="post">
+
+            <div class="field">
+                <label class="label" for="name">User Name</label>
+                <input class="input" type="text" name="name" id="name" placeholder="Text input">
+            </div>
+
+            <div class="field">
+                <label class="label" for="password">Password</label>
+                <input class="input" type="password" name="password" id="password" placeholder="Password input">
+            </div>
+
+            <div class="field">
+                <label class="label" for="email">Email</label>
+                <input class="input" type="email" name="email" id="email" placeholder="email input">
+            </div>
+
+            <div class="field">
+                <label class="label" for="tel">Telephone Number</label>
+                <input class="input" type="tel" name="telephone" id="tel" placeholder="Telephone input">
+            </div>
+            <div class="field">
+                <label class="label" for="dateOfBirth">Date Of Birth</label>
+                <input class="input" type="date" name="dateOfBirth" id="dateOfBirth" placeholder="Date input">
+            </div>
+
+            <div class="select">
+                <label class="label" for="countries">Favourite Countries</label>
+                <select name="favCountries" id="countries" multiple style="width: 200px;">
+                    <option value="Argentina">Argentina</option>
+                    <option value="Bolivia">Bolivia</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="Chile">Chile</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Ecuador">Ecuador</option>
+                    <option value="Guyana">Guyana</option>
+                    <option value="Paraguay">Paraguay</option>
+                    <option value="Peru">Peru</option>
+                    <option value="Suriname">Suriname</option>
+                    <option value="Uruguay">Uruguay</option>
+                    <option value="Venezuela">Venezuela</option>
+                </select>
+            </div>
+
+            <br><br><br><br><br><br><br><br>
+
+            <div class="checkboxes">
+
+                <label class="label">Favourite Days</label>
+
+                <label class="checkbox">
+                    <input type="checkbox" name="favDays" value="Monday"/>
+                    Monday
+                </label>
+
+                <label class="checkbox">
+                    <input type="checkbox" name="favDays" value="Tuesday"/>
+                    Tuesday
+                </label>
+
+                <label class="checkbox">
+                    <input type="checkbox" name="favDays" value="Wednesday"/>
+                    Wednesday
+                </label>
+
+                <label class="checkbox">
+                    <input type="checkbox" name="favDays" value="Thursday"/>
+                    Thursday
+                </label>
+
+                <label class="checkbox">
+                    <input type="checkbox" name="favDays" value="Friday"/>
+                    Friday
+                </label>
+
+                <label class="checkbox">
+                    <input type="checkbox" name="favDays" value="Saturday"/>
+                    Saturday
+                </label>
+
+                <label class="checkbox">
+                    <input type="checkbox" name="favDays" value="Sunday"/>
+                    Sunday
+                </label>
+            </div>
+            <br>
+            <div class="control">
+                <label class="label">Do you like the Form?</label>
+                <label class="radio">
+                    <input type="radio" name="likeOrNot" value="Yes"/>
+                    Yes
+                </label>
+                <label class="radio">
+                    <input type="radio" name="likeOrNot" value="No"/>
+                    No
+                </label>
+            </div>
+            <br>
+            <div class="field">
+                <label class="label" for="description">Description</label>
+                <textarea class="textarea" placeholder="e.g. Hello world" name="description" id="description"></textarea>
+            </div>
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link">Submit</button>
+                </div>
+                <div class="control">
+                    <button class="button is-link is-light">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

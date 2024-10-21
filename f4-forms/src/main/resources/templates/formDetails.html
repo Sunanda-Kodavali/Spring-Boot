@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Form Details</title>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    >
+</head>
+<body>
+<h1 class="title" style="text-align: center;padding: 20px 10px;">Registration</h1>
+<div class="container">
+    <div class="notification is-primary">
+        <div class="field">
+            <label class="label">User Name: <span th:text="${form.name()}"></span></label>
+        </div>
+        <div class="field">
+            <label class="label">Password: <span th:text="${form.password()}"></span></label>
+        </div>
+        <div class="field">
+            <label class="label">Email: <span th:text="${form.email()}"></span></label>
+        </div>
+        <div class="field">
+            <label class="label">Telephone: <span th:text="${form.telephone()}"></span></label>
+        </div>
+        <div class="field">
+            <label class="label">Date Of Birth: <span th:text="${form.dateOfBirth()}"></span></label>
+        </div>
+        <div class="field">
+            <label class="label">Favourite Countries:
+                <ul>
+                    <li th:each="country : ${form.favCountries()}" th:text="${country}"></li>
+                </ul>
+                </label>
+        </div>
+        <div class="field">
+            <label class="label">Favourite Days:
+                <ul>
+                    <li th:each="day : ${form.favDays()}" th:text="${day}"></li>
+                </ul>
+               </label>
+        </div>
+        <div class="field">
+            <label class="label">Like the form?: <span th:text="${form.likeOrNot()}"></span></label>
+        </div>
+        <div class="field">
+            <label class="label">Description: <span th:text="${form.description()}"></span></label>
+        </div>
+
+
+    </div>
+</div>
+</body>
+</html>
