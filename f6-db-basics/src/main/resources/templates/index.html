@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+<h1>Autos</h1>
+<div>
+    <div th:if="${#lists.size(brands) == 0}">
+        <p>No brands available.</p>
+    </div>
+    <div th:each="brand : ${brands}">
+        <a th:href="'models?brandId='+${brand.id()}">
+        <img th:src="${brand.logo()}" alt="logo" width="80">
+        </a>
+        <p>
+        <a th:href="'models?brandId='+${brand.id()}" th:text="${brand.name()}"></a>
+        </p>
+    </div>
+</div>
+</body>
+</html>
