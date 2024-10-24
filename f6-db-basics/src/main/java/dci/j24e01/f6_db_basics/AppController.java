@@ -10,8 +10,8 @@ import java.util.List;
 public class AppController {
 
     private final DBConnectionManager dbConnectionManager = new MysqlConnectionManager();
-    private final BrandDAO brandDAO = new BrandDAOImpl(dbConnectionManager.getConnection());
-    private final CarModelDAO carModelDAO = new CarModelDAOImpl(dbConnectionManager.getConnection());
+    private final BrandDAO brandDAO = new BrandDAOImpl(dbConnectionManager);
+    private final CarModelDAO carModelDAO = new CarModelDAOImpl(dbConnectionManager);
 
 
     @GetMapping("/")

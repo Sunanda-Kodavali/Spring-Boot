@@ -12,8 +12,8 @@ public class BrandDAOImpl implements BrandDAO {
 
     private Connection connection;
 
-    public BrandDAOImpl(Connection connection) {
-        this.connection = connection;
+    public BrandDAOImpl(DBConnectionManager connectionManager) {
+        this.connection = connectionManager.getConnection();
     }
 
     @Override

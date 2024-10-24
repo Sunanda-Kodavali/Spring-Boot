@@ -11,8 +11,8 @@ public class CarModelDAOImpl implements CarModelDAO {
 
     private final Connection connection;
 
-    public CarModelDAOImpl(Connection connection) {
-        this.connection = connection;
+    public CarModelDAOImpl(DBConnectionManager connectionManager) {
+        this.connection = connectionManager.getConnection();
     }
     @Override
     public List<CarModel> getModels() {
