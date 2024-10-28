@@ -1,5 +1,6 @@
 package dci.j24e01.f6_db_basics;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,9 +10,10 @@ import java.util.List;
 @Controller
 public class AppController {
 
-    private final DBConnectionManager dbConnectionManager = new MysqlConnectionManager();
-    private final BrandDAO brandDAO = new BrandDAOImpl(dbConnectionManager);
-    private final CarModelDAO carModelDAO = new CarModelDAOImpl(dbConnectionManager);
+    @Autowired
+    private BrandDAO brandDAO;
+    @Autowired
+    private CarModelDAO carModelDAO;
 
 
     @GetMapping("/")

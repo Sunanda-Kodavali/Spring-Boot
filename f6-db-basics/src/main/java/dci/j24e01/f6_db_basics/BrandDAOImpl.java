@@ -1,5 +1,7 @@
 package dci.j24e01.f6_db_basics;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,10 +9,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class BrandDAOImpl implements BrandDAO {
 
 
-    private Connection connection;
+    private final Connection connection;
 
     public BrandDAOImpl(DBConnectionManager connectionManager) {
         this.connection = connectionManager.getConnection();

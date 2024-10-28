@@ -1,9 +1,12 @@
 package dci.j24e01.f6_db_basics;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+@Component
 public class MysqlConnectionManager implements DBConnectionManager{
 
     @Override
