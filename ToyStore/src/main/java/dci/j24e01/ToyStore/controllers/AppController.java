@@ -82,4 +82,22 @@ public class AppController {
 
     }
 
+    @GetMapping("aboutUs")
+    public ModelAndView aboutUs() {
+        return new ModelAndView("aboutUs");
+    }
+
+    @GetMapping("home")
+    public ModelAndView home() {
+        return new ModelAndView("home");
+    }
+    @GetMapping("blog")
+    public ModelAndView blog() {
+        return new ModelAndView("blog");
+    }
+    @GetMapping("contact")
+    public ModelAndView contact() {
+        return new ModelAndView("contact");
+    }
+
 }
