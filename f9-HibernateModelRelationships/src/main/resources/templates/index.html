@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+</head>
+<body>
+<h1 class="">Categories</h1>
+<ul>
+    <li th:each="category : ${categoryList}">
+        <!--            <a th:text="${category.getName()}" th:href="'/' + ${category.getSlug()}"></a>-->
+        <a th:text="${category.getName()}" th:href="@{/{slug}(slug=${category.getSlug()})}"></a>
+    </li>
+</ul>
+</body>
+</html>
