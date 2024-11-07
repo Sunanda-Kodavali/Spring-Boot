@@ -1,4 +1,4 @@
-package dci.j24e01.ToyStore;
+package dci.j24e01.ToyStore.models;
 
 import java.time.LocalDateTime;
 

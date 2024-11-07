@@ -1,5 +1,9 @@
-package dci.j24e01.ToyStore;
+package dci.j24e01.ToyStore.controllers;
 
+import dci.j24e01.ToyStore.models.Category;
+import dci.j24e01.ToyStore.models.Product;
+import dci.j24e01.ToyStore.services.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,8 +16,10 @@ import java.util.List;
 @Controller
 public class AppController {
 
-    private final DBConnectionManager dbConnectionManager = new MysqlConnectionManager();
-    private final ProductDAO productDAO = new ProductDAOImpl(dbConnectionManager);
+    @Autowired
+    private ProductDAO productDAO;
+    @Autowired
+    private CategoryDAO categoryDAO;
 
     @GetMapping("/")
     public ModelAndView getAllProducts() {
@@ -27,7 +33,11 @@ public class AppController {
     @GetMapping("/addProduct")
     public ModelAndView addProduct() {
 
-        return new ModelAndView("addProduct");
+        ModelAndView modelAndView = new ModelAndView("addProduct");
+        List<Category> categories = categoryDAO.getAllCategories();
+        System.out.println(categories.size());
+        modelAndView.addObject("categories", categories);
+        return modelAndView;
 
     }
 

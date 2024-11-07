@@ -1,4 +1,4 @@
 package dci.j24e01.ToyStore.models;
 
-public record Category() {
+public record Category(Long id, String name) {
 }

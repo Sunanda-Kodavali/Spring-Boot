@@ -1,9 +1,12 @@
-package dci.j24e01.ToyStore;
+package dci.j24e01.ToyStore.services;
+
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+@Component
 public class MysqlConnectionManager implements DBConnectionManager{
     @Override
     public Connection getConnection() {

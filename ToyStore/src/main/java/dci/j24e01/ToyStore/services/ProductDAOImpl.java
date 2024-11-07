@@ -1,10 +1,14 @@
-package dci.j24e01.ToyStore;
+package dci.j24e01.ToyStore.services;
+
+import dci.j24e01.ToyStore.models.Product;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ProductDAOImpl implements ProductDAO {
 
     private final Connection connection;

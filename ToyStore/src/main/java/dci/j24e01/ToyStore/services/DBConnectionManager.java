@@ -1,4 +1,4 @@
-package dci.j24e01.ToyStore;
+package dci.j24e01.ToyStore.services;
 
 import java.sql.Connection;
 

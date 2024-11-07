@@ -1,4 +1,6 @@
-package dci.j24e01.ToyStore;
+package dci.j24e01.ToyStore.services;
+
+import dci.j24e01.ToyStore.models.Product;
 
 import java.util.List;
 
