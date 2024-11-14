@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>City List</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
 
-<!-- Page Container -->
 <div class="container is-max-widescreen">
-    <!-- Header -->
+
     <section class="hero is-primary">
         <div class="hero-body">
             <div class="container">
@@ -22,7 +20,6 @@
         </div>
     </section>
 
-    <!-- Form for Pagination and Sorting -->
     <section class="section">
         <div class="box">
             <form th:action="@{/pagination}" method="GET" class="columns is-centered">
@@ -64,7 +61,6 @@
         </div>
     </section>
 
-    <!-- City List Table -->
     <section class="section">
         <div class="box">
             <table class="table is-bordered is-striped is-hoverable is-fullwidth">
@@ -86,10 +82,9 @@
         </div>
     </section>
 
-    <!-- Pagination -->
     <section class="section">
         <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-            <!-- First Page Button -->
+
             <a th:href="@{/pagination(pageSize=${pageSize}, sortBy=${sortBy}, pageNumber=1)}"
                th:class="${currentPage == 1 ? 'pagination-previous is-disabled' : 'pagination-previous'}"
                th:aria-disabled="${currentPage == 1}"
@@ -98,7 +93,7 @@
                 First
             </a>
 
-            <!-- Previous Page Button -->
+
             <a th:href="@{/pagination(pageSize=${pageSize}, sortBy=${sortBy}, pageNumber=${currentPage - 1})}"
                th:class="${currentPage <= 1 ? 'pagination-previous is-disabled' : 'pagination-previous'}"
                th:aria-disabled="${currentPage <= 1}"
@@ -117,7 +112,7 @@
                 </li>
             </ul>
 
-            <!-- Next Page Button -->
+
             <a th:href="@{/pagination(pageSize=${pageSize}, sortBy=${sortBy}, pageNumber=${currentPage + 1})}"
                th:class="${currentPage >= totalPages ? 'pagination-next is-disabled' : 'pagination-next'}"
                th:aria-disabled="${currentPage >= totalPages}"
@@ -126,7 +121,6 @@
                 Next
             </a>
 
-            <!-- Last Page Button -->
             <a th:href="@{/pagination(pageSize=${pageSize}, sortBy=${sortBy}, pageNumber=${totalPages})}"
                th:class="${currentPage == totalPages ? 'pagination-next is-disabled' : 'pagination-next'}"
                th:aria-disabled="${currentPage == totalPages}"

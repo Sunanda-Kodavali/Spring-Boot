@@ -11,9 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class CityController {
@@ -21,51 +19,11 @@ public class CityController {
     @Autowired
     CityRepository cityRepository;
 
-    /*@GetMapping("/")
-    public Map<String, Object> root(
-            @RequestParam(name="page", required = false, defaultValue = "1") Integer urlPageNumber
-    ) {
-
-        int pageNumber = urlPageNumber - 1;
-
-        Pageable pageable = PageRequest.of(pageNumber, 20);
-        Page<City> page = cityRepository.findAll(pageable);
-
-        return Map.of(
-                "count", page.getTotalElements(),
-                "results", page.getContent(),
-                "page", page.getNumber() + 1,
-                "totalPages", page.getTotalPages()
-        );
-
-    }*/
-
-    @GetMapping("/")
+    @GetMapping({"/","/pagination"})
     public String index(Model model,
                         @RequestParam(defaultValue = "20") int pageSize,
                         @RequestParam(defaultValue = "id") String sortBy,
                         @RequestParam(defaultValue = "1") int pageNumber) {
-
-        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, Sort.by(sortBy));
-        Page<City> cityPages = cityRepository.findAll(pageable);
-        List<City> cities = cityPages.getContent();
-
-        System.out.println(pageNumber+"check..........."+cityPages.getTotalPages());
-
-        model.addAttribute("cities", cities);
-        model.addAttribute("sortBy", sortBy);
-        model.addAttribute("pageSize", pageSize);
-        model.addAttribute("totalPages", cityPages.getTotalPages());
-        model.addAttribute("currentPage", pageNumber);
-
-        return "index";
-    }
-
-
-    @GetMapping("/pagination")
-    public String pagination(@RequestParam Integer pageSize, @RequestParam String sortBy,
-                             @RequestParam(required = false, defaultValue = "1") Integer pageNumber, Model model){
-
 
         Sort sort;
         switch (sortBy) {
@@ -84,11 +42,12 @@ public class CityController {
             default:
                 sort = Sort.by("id");
         }
+
+
         Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
-
-
         Page<City> cityPages = cityRepository.findAll(pageable);
         List<City> cities = cityPages.getContent();
+
         model.addAttribute("cities", cities);
         model.addAttribute("sortBy", sortBy);
         model.addAttribute("pageSize", pageSize);
@@ -97,4 +56,5 @@ public class CityController {
 
         return "index";
     }
+
 }
