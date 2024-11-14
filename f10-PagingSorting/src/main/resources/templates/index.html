@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+<!-- Page Container -->
+<div class="container is-max-widescreen">
+    <!-- Header -->
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">City List</h1>
+                <h2 class="subtitle">A list of cities with sorting and pagination options.</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form for Pagination and Sorting -->
+    <section class="section">
+        <div class="box">
+            <form th:action="@{/pagination}" method="GET" class="columns is-centered">
+                <div class="field column is-one-quarter">
+                    <label class="label" for="pageSize">Cities per page:</label>
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select name="pageSize" id="pageSize" th:value="${pageSize}">
+                                <option value="20" th:selected="${pageSize == 20}">20</option>
+                                <option value="50" th:selected="${pageSize == 50}">50</option>
+                                <option value="100" th:selected="${pageSize == 100}">100</option>
+                                <option value="200" th:selected="${pageSize == 200}">200</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field column is-one-quarter">
+                    <label class="label" for="sortBy">Sort by:</label>
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select name="sortBy" id="sortBy" th:value="${sortBy}">
+                                <option value="id" th:selected="${sortBy == 'id'}">Default (by ID)</option>
+                                <option value="name_asc" th:selected="${sortBy == 'name_asc'}">Name ASC</option>
+                                <option value="name_desc" th:selected="${sortBy == 'name_desc'}">Name DESC</option>
+                                <option value="pop_asc" th:selected="${sortBy == 'pop_asc'}">Population ASC</option>
+                                <option value="pop_desc" th:selected="${sortBy == 'pop_desc'}">Population DESC</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column is-narrow">
+                    <div class="control">
+                        <button class="button is-link is-fullwidth" type="submit">Apply</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- City List Table -->
+    <section class="section">
+        <div class="box">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Population</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="city : ${cities}">
+                    <td th:text="${city.id}"></td>
+                    <td th:text="${city.name}"></td>
+                    <td th:text="${city.population}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Pagination -->
+    <section class="section">
+        <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+            <!-- First Page Button -->
+            <a th:href="@{/pagination(pageSize=${pageSize}, sortBy=${sortBy}, pageNumber=1)}"
+               th:class="${currentPage == 1 ? 'pagination-previous is-disabled' : 'pagination-previous'}"
+               th:aria-disabled="${currentPage == 1}"
+               aria-label="First page">
+                <span class="icon"><i class="fas fa-angle-double-left"></i></span>
+                First
+            </a>
+
+            <!-- Previous Page Button -->
+            <a th:href="@{/pagination(pageSize=${pageSize}, sortBy=${sortBy}, pageNumber=${currentPage - 1})}"
+               th:class="${currentPage <= 1 ? 'pagination-previous is-disabled' : 'pagination-previous'}"
+               th:aria-disabled="${currentPage <= 1}"
+               aria-label="Previous page">
+                <span class="icon"><i class="fas fa-chevron-left"></i></span>
+                Previous
+            </a>
+
+            <ul class="pagination-list">
+                <li th:each="pageNum : ${#numbers.sequence(
+                        T(java.lang.Math).max(1, currentPage - 3),
+                        T(java.lang.Math).min(totalPages, currentPage + 3))}">
+                    <a th:href="@{/pagination(pageSize=${pageSize}, sortBy=${sortBy}, pageNumber=${pageNum})}"
+                       th:class="${pageNum == currentPage ? 'pagination-link is-current' : 'pagination-link'}"
+                       th:text="${pageNum}"></a>
+                </li>
+            </ul>
+
+            <!-- Next Page Button -->
+            <a th:href="@{/pagination(pageSize=${pageSize}, sortBy=${sortBy}, pageNumber=${currentPage + 1})}"
+               th:class="${currentPage >= totalPages ? 'pagination-next is-disabled' : 'pagination-next'}"
+               th:aria-disabled="${currentPage >= totalPages}"
+               aria-label="Next page">
+                <span class="icon"><i class="fas fa-chevron-right"></i></span>
+                Next
+            </a>
+
+            <!-- Last Page Button -->
+            <a th:href="@{/pagination(pageSize=${pageSize}, sortBy=${sortBy}, pageNumber=${totalPages})}"
+               th:class="${currentPage == totalPages ? 'pagination-next is-disabled' : 'pagination-next'}"
+               th:aria-disabled="${currentPage == totalPages}"
+               aria-label="Last page">
+                <span class="icon"><i class="fas fa-angle-double-right"></i></span>
+                Last
+            </a>
+        </nav>
+    </section>
+
+</div>
+
+</body>
+</html>
