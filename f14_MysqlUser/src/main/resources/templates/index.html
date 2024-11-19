@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Nothing to see yet...</h1>
+<h2>Check the logs...</h2>
+
+<div th:object="${user}">
+    <div th:text="*{getUsername()}"></div>
+    <div th:text="*{getPassword()}"></div>
+</div>
+<div>
+    <div th:text="${user.getUsername()}"></div>
+    <div th:text="${user.getPassword()}"></div>
+</div>
+
+</body>
+</html>
