@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+<div id="map" style="height: 600px;"></div>
+
+<script th:inline="javascript">
+
+    var map = L.map('map').setView([51.33, 10.45], 6);
+
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+    var bounds = L.latLngBounds();
+
+    const locations = [[${locations}]];
+
+    locations.forEach(location => {
+        var marker = L.marker([location.lat, location.lon])
+            .addTo(map)
+            .bindPopup(location.label)
+            .on('click', function() {
+                map.setView([location.lat, location.lon], 16);
+            });
+        bounds.extend(marker.getLatLng());
+    });
+    map.fitBounds(bounds);
+
+</script>
+</body>
+</html>
